@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="AccessCounterDemo" basedir="." default="run">
+
+	<property environment="env" />
+	<path id="project.classpath">
+		<pathelement path="${env.JUNIT}" />
+		<pathelement path="${env.HAMCREST_CORE}" />
+		<pathelement path="${user.dir}/bin" />
+	</path>
+
+	<target name="init" depends="clean">
+		<mkdir dir="bin" />
+	</target>
+
+	<target name="compile-class" depends="init">
+		<javac srcdir="src" destdir="bin" debug="on" includeantruntime="true">
+			<src path="src" />
+			<classpath refid="project.classpath" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete dir="bin" />
+	</target>
+
+	<target name="run" depends="compile-class">
+		<java classname="edu/umb/cs/cs681/hw21/AccessCounterDemo" classpath="bin" fork="true" />
+	</target>
+
+
+</project>
